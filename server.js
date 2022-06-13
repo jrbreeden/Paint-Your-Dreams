@@ -7,24 +7,9 @@ const morgan = require("morgan"); //import morgan
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const path = require("path")
+const Review = require("./models/review")
 
-
-  ////////////////////////////////////////////////
-// Our Models
-////////////////////////////////////////////////
-// pull schema and model from mongoose
-const { Schema, model } = mongoose;
-
-// make review schema
-const reviewSchema = new Schema({
-    content: String,
-    rating: {type: Number, min: 1, max: 5, default: 5}
-  }, {
-    timestamps: true
-  });
   
-// make review model
-const Review = model("Review", reviewSchema);
 
 /////////////////////////////////////////////////
 // Create our Express Application Object Bind Liquid Templating Engine
@@ -36,7 +21,7 @@ const app = require("liquid-express-views")(express(), {root: [path.resolve(__di
 /////////////////////////////////////////////////////
 app.use(morgan("tiny")); // logging
 app.use(methodOverride("_method")); //override for put and delete request from forms
-app.use(express.urlencoded({ extended: true })); // parse urlencoded request bodies
+app.use(express.urlencoded({ extended: true})); // parse urlencoded request bodies
 app.use(express.static("public")); // serve files from public statically
 
 ////////////////////////////////////////////
