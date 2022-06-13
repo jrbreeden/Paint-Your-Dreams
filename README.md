@@ -19,7 +19,7 @@ Routes:
 * Show:
   * GET/reviews/:id
 * New:
-   * GET reviws/new
+   * GET reviews/new
 * Edit
   * GET /reviews/:id/edit
 * Create
