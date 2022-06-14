@@ -17,7 +17,8 @@ const reviewsSchema = new Schema({
     content: String,
     rating: {type: Number, min: 1, max: 5, default: 5}
   }, {
-    timestamps: true
+    timestamps: true,
+    username: String,
   });
   
 // make review model
