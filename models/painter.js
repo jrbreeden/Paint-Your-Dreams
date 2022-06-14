@@ -9,32 +9,29 @@ const mongoose = require("./connection")
 // pull schema and model from mongoose
 const { Schema, model } = mongoose;
 
-// Make user schema
-const userSchema = new Schema ({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    bio: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    }
-})
+// make painter schema
+const painterSchema = new Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
 
-// Make user model
-const User = model("User", userSchema)
+        year: {
+        type: Number,
+        required: true,
+        },
+         
+        reviews: {
+            type: [String],
+            required: true,
+        },
+    })
+
+    // Make painter model
+const Painter = model("Painter", painterSchema)
 
 ///////////////////////////////////////////////////
 // Export Model
 ///////////////////////////////////////////////////
-module.exports = User
+module.exports = Painter
