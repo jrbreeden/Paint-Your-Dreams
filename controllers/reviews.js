@@ -9,29 +9,22 @@ const Review = require("../models/review");
 /////////////////////////////////////////
 const router = express.Router();
 
+////////////////////////////////////////
+// Router Middleware
+////////////////////////////////////////
+// Authorization Middleware
+router.use((req, res, next) => {
+  if (req.session.loggedIn) {
+    next();
+  } else {
+    res.redirect("/user/login")
+  }
+})
+
+
 /////////////////////////////////////////
 // Routes
 /////////////////////////////////////////
-router.get("/seed", (req, res) => {
-    // array of starter reviews
-    const startReviews = [
-        { content: "review1", rating: 1 },
-        { content: "review2", rating: 2 },
-        { content: "review3", rating: 3 },
-        { content: "review4", rating: 4 },
-        { content: "review5", rating: 5 },
-    ];
-
-    // Delete all reviews
-    Review.deleteMany({}).then((data) => {
-        // Seed Starter Reviews
-        Review.create(startReviews).then((data) => {
-            // send created reviews as response to confirm creation
-            res.json(data);
-        });
-    });
-});
-
 
 // index route
 router.get("/", (req, res) => {
