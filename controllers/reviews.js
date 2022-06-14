@@ -121,6 +121,23 @@ router.put("/:id", (req, res) => {
       });
   });
   
+  // show route
+  router.get("/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+
+    // find the particular review from the database
+    Review.findById(id)
+    .then((review) => {
+        console.log(review);
+        // render the template with the data from the database
+        res.render("reviews/show.liquid", { review});
+    })
+    .catch((error) => {
+        console.log(error);
+        res.json({ error });
+    });
+  });
   
 //////////////////////////////////////////
 // Export the Router
