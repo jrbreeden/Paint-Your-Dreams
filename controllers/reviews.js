@@ -53,6 +53,22 @@ router.get("/", (req, res) => {
 router.get("/new", (req, res) => {
     res.render("reviews/new.liquid");
   });
+
+  // create route
+router.post("/", (req, res) => {
+    // add username to req.body to track related user
+    req.body.username = req.session.username;
+    Review.create(req.body)
+      .then((reviews) => {
+        // redirect user to index page if successfully created item
+        res.redirect("/reviews")
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error })
+      })
+  })
   
 //////////////////////////////////////////
 // Export the Router
