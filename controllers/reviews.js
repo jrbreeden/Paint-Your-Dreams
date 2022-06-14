@@ -33,6 +33,27 @@ router.get("/seed", (req, res) => {
 });
 
 
+// index route
+router.get("/", (req, res) => {
+    // find all the reviews
+    Review.find({ username: req.session.username })
+      // render a template after they are found
+      .then((reviews) => {
+        console.log(reviews);
+        res.render("reviews/index.liquid", { reviews });
+      })
+      // send error as json if they aren't
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
+
+  // new route
+router.get("/new", (req, res) => {
+    res.render("reviews/new.liquid");
+  });
+  
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
