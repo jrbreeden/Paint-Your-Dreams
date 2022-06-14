@@ -66,9 +66,26 @@ router.post("/", (req, res) => {
       // send error as json
       .catch((error) => {
         console.log(error);
-        res.json({ error })
+        res.json({ error });
+      });
+  });
+
+  // edit route
+router.get("/:id/edit", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // get the review from the database
+    Review.findById(id)
+      .then((review) => {
+        // render edit page and send review data
+        res.render("reviews/edit.liquid", { review });
       })
-  })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
   
 //////////////////////////////////////////
 // Export the Router
