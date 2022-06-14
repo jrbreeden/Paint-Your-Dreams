@@ -86,6 +86,23 @@ router.get("/:id/edit", (req, res) => {
         res.json({ error });
       });
   });
+
+  // Update route
+router.put("/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    Review.findByIdAndUpdate(id, req.body,{ new: true })
+    // update the review
+      .then((review) => {
+        // redirect to main page after updating
+        res.redirect("/reviews")
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error)
+        res.json({ error })
+      })
+  })
   
 //////////////////////////////////////////
 // Export the Router
