@@ -7,7 +7,8 @@ const morgan = require("morgan"); //import morgan
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const path = require("path")
-const Review = require("./models/review")
+const ReviewRouter = require("./controllers/reviews")
+const UserRouter = require("./controllers/users")
 
 
 
@@ -27,6 +28,9 @@ app.use(express.static("public")); // serve files from public statically
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
+app.use("/reviews", ReviewRouter) // send all "/reviews" routes to review router
+app.use("/users", UserRouter) // send all "/user" routes to user router
+
 app.get("/", (req, res) => {
     res.send("your server is running.");
   });
