@@ -55,8 +55,11 @@ router.post("/login", async (req, res) => {
                 // compare password
                 const result = await bcrypt.compare(password, user.password);
                 if (result) {
-                    // redirect to fruits page if successful
-                    res.redirect("/fruits");
+                    // store some properties in the session object
+                    req.session.username = username
+                    req.session.loggedIn = true
+                    // redirect to reviews page if successful
+                    res.redirect("/reviews");
                 } else {
                     // error if password doesn't match
                     res.json({ error: "password does not match" });
