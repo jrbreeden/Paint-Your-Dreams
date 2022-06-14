@@ -1,0 +1,23 @@
+{% layout "layout.liquid" %}
+{% block content %}
+<div>
+    <form action="/user/signup" method="POST">
+        <fieldset>
+            <legend>New User</legend>
+            <label
+            >USERNAME: <input type="text" name="username" required />
+            </label>
+            <label
+            >BIO: <input type="text" name="bio" required />
+            </label>
+            <label
+            >EMAIL: <input type="email" name="email" required />
+            </label>
+            <label
+            >PASSWORD: <input type="password" name="password" required />
+            </label>
+            <input type="submit" value="Create Account" />
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

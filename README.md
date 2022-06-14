@@ -33,6 +33,7 @@ Technologies Used:
 * CSS
 * Express
 * Liquid
+* MongoDB
 
 How To Use:
    * Log in

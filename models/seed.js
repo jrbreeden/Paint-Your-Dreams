@@ -19,7 +19,7 @@ db.on("open", () => {
 
   // Run any database queries in this function
 const startReviews = [
-    { content: "review1", rating: 1},
+    { content: "review1", rating: 1 },
     { content: "review2", rating: 2 },
     { content: "review3", rating: 3 },
     { content: "review4", rating: 4 },
