@@ -1,0 +1,33 @@
+{% layout "layout.liquid" %} 
+{% block content %}
+<div>
+    <form action="/painters/{{painter._id}}?_method=PUT" method="post">
+    <fieldset>
+        <legend>Edit {{ painter.name }}</legend>
+      <label>
+        NAME:<input 
+        type="text"
+        name="name"
+        placeholder="enter painter name" 
+        value="{{painter.name}}"
+        />
+    </label>
+    <label>
+      YEAR:<input
+        type="number"
+        name="number"
+        placeholder="enter painter year"
+      />
+    </label>
+    <label>
+        REVIEWS:<input 
+        type="text" 
+        name="review" 
+        placeholder="enter review"
+        />
+    </label>   
+    </fieldset>
+    <input type="submit" value="Edit {{painter.name}}" />
+  </form>
+</div>
+{% endblock %}
