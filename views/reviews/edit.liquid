@@ -1,0 +1,33 @@
+{% layout "layout.liquid" %} 
+{% block content %}
+<div>
+    <form action="/reviews/{{review._id}}?_method=PUT" method="post">
+    <fieldset>
+        <legend>Edit {{ review.name }}</legend>
+      <label>
+        NAME:<input 
+        type="text"
+        name="name"
+        placeholder="enter review name" 
+        value="{{review.name}}"
+        />
+    </label>
+    <label>
+      CONTENT:<input
+        type="text"
+        name="name"
+        placeholder="enter review name"
+        value="{{review.content}}"
+      />
+    </label>
+    <label>
+        RATING:<input 
+        type="checkbox" 
+        name="rating" 
+        />
+    </label>   
+    </fieldset>
+    <input type="submit" value="Edit {{review.name}}" />
+  </form>
+</div>
+{% endblock %}
