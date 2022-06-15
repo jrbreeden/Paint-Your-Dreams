@@ -1,0 +1,17 @@
+{% layout "liquid layout" %}
+{% block content %}
+<div>
+    <article>
+        <h2> {{painter.name }} </h2>
+        <h3>{{ painter.year }}</h3>
+        <br>
+        <h4>
+            {{ painter.review }}
+        </h4>
+        <a href="/painters/{{ painter._id }}/edit"><button>Edit</button></a>
+        <form action="/painters/{{ painter._id }}?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" />
+        </form>
+        <a href="/painters/"><button>Back to main</button></a>
+    </article>
+</div>
