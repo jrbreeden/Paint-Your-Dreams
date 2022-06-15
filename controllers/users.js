@@ -1,9 +1,9 @@
 ////////////////////////////////////////
 // Import Dependencies
 ////////////////////////////////////////
-const express = require("express")
-const User = require("../models/user")
-const bcrypt = require("bcryptjs")
+const express = require("express");
+const User = require("../models/user");
+const bcrypt = require("bcryptjs");
 
 
 /////////////////////////////////////////
@@ -17,7 +17,7 @@ const router = express.Router();
 /////////////////////////////////////////
 // The Signup Routes (Get => form, post => submit form)
 router.get("/signup", (req, res) => {
-    res.render("users/singup.liquid");
+    res.render("users/signup.liquid");
 });
 
 router.post("/signup", async (req, res) => {
@@ -29,7 +29,7 @@ router.post("/signup", async (req, res) => {
     // create user
     User.create(req.body)
         .then((user) => {
-            // redirect to the login page
+            // redirect to login page
             res.redirect("/users/login")
         })
         .catch((error) => {
@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
 
 // The login Routes (Get => form, post => submit form)
 router.get("/login", (req, res) => {
-    res.render("user/login.liquid");
+    res.render("users/login.liquid");
 });
 
 router.post("/login", async (req, res) => {
@@ -58,15 +58,15 @@ router.post("/login", async (req, res) => {
                     // store some properties in the session object
                     req.session.username = username
                     req.session.loggedIn = true
-                    // redirect to reviews page if successful
-                    res.redirect("/reviews");
+                    // redirect to fruits page if successful
+                    res.redirect("/fruits");
                 } else {
                     // error if password doesn't match
-                    res.json({ error: "password does not match" });
+                    res.json({ error: "password doesn't match" });
                 }
             } else {
                 // send error if user doesn't exist
-                res.json({ error: "user does not exist" });
+                res.json({ error: "user doesn't exist" });
             }
         })
         .catch((error) => {
@@ -83,8 +83,9 @@ router.get("/logout", (req, res) => {
     });
 });
 
+
+
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
-
 module.exports = router;
