@@ -1,0 +1,20 @@
+{% layout "layout.liquid" %}
+{% block content %}
+<div>
+  <form action="/painters" method="post">
+    <fieldset>
+      <legend>Create a New Painter</legend>
+      <label>
+        NAME:<input type="text" name="name" placeholder="enter painter name" />
+      </label>
+      <label>
+        YEAR:<input type="number" name="number" placeholder="enter painter year" />
+      </label>
+      <label>
+       REVIEWS:<input type="text" name="review" placeholder="enter review" />
+      </label>
+    </fieldset>
+    <input type="submit" value="create new painter" />
+  </form>
+</div>
+{% endblock %}

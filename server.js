@@ -11,6 +11,7 @@ const ReviewRouter = require("./controllers/reviews")
 const UserRouter = require("./controllers/users")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
+const PainterRouter = require("./controllers/painters");
 
 
 
@@ -41,6 +42,7 @@ app.use(
 ////////////////////////////////////////////
 app.use("/reviews", ReviewRouter) // send all "/reviews" routes to review router
 app.use("/users", UserRouter) // send all "/user" routes to user router
+app.use("/painters", PainterRouter)
 
 app.get("/", (req, res) => {
   res.render("index.liquid");
