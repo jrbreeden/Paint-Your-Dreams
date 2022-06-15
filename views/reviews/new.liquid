@@ -1,4 +1,4 @@
-{% layout "layout.liquid" %} 
+{% layout "layout.liquid" %}
 {% block content %}
 <div>
   <form action="/reviews" method="post">
@@ -9,7 +9,12 @@
       </label>
       <label>
         CONTENT:<input type="text" name="content" placeholder="enter review name" />
-      <input type="submit" value="create new product" />
+      </label>
+      <label>
+        RATING:<input type="number" name="quantity" placeholder="quantity" min="1" max="5"  default="5"  />
+      </label>
+    </fieldset>
+    <input type="submit" value="create new review" />
   </form>
 </div>
 {% endblock %}
