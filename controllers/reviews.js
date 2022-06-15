@@ -54,7 +54,7 @@ router.post("/", (req, res) => {
     Review.create(req.body)
       .then((reviews) => {
         // redirect user to index page if successfully created item
-        res.redirect("/reviews")
+        res.render("reviews/show.liquid")
       })
       // send error as json
       .catch((error) => {

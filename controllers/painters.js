@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
     Painter.create(req.body)
       .then((painters) => {
         // redirect user to index page if successfully created item
-        res.redirect("/painters")
+        res.render("painters/show.liquid")
       })
       // send error as json
       .catch((error) => {
@@ -52,9 +52,9 @@ router.post("/", (req, res) => {
 router.get("/:id/edit", (req, res) => {
     // get the id from params
     const id = req.params.id;
-    // get the review from the database
-    Review.findById(id)
-      .then((review) => {
+    // get the painter from the database
+  Painter.findById(id)
+      .then((painter) => {
         // render edit page and send painter data
         res.render("painters/edit.liquid", { painter });
       })
