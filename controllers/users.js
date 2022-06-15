@@ -3,7 +3,7 @@
 ////////////////////////////////////////
 const express = require("express")
 const User = require("../models/user")
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs")
 
 
 /////////////////////////////////////////
@@ -76,12 +76,12 @@ router.post("/login", async (req, res) => {
         });
 });
 
-router.get("/logout", (req, res => {
+router.get("/logout", (req, res) => {
     // destroy session and redirect to main page
     req.session.destroy((err) => {
         res.redirect("/");
     });
-}));
+});
 
 //////////////////////////////////////////
 // Export the Router

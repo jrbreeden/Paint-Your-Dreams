@@ -2,6 +2,7 @@
 // Import Dependencies
 ///////////////////////////////////////
 const mongoose = require("./connection");
+const Painter = require("./painter");
 const Review = require("./review");
 
 ///////////////////////////////////////////
@@ -47,3 +48,28 @@ Review.deleteMany({})
 });
 
 })
+
+const startPainters = [
+  { name: "Testing", year: 1950, reviews: [ "testReview" ] },
+  
+];
+
+// Delete all painters
+Painter.deleteMany({})
+.then((deletedPainters) => {
+  // add the starter painters
+  Painter.create(startPainters)
+    .then((newPainters) => {
+      // log the new painters to confirm their creation
+      console.log(newPainters);
+      db.close();
+    })
+    .catch((error) => {
+      console.log(error);
+      db.close();
+    });
+})
+.catch((error) => {
+  console.log(error);
+  db.close();
+});
