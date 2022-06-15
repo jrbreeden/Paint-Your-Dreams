@@ -1,0 +1,15 @@
+{% layout "layout.liquid" %} 
+{% block content %}
+<div>
+  <form action="/reviews" method="post">
+    <fieldset>
+      <legend>Create a New Review</legend>
+      <label>
+        NAME:<input type="text" name="name" placeholder="enter review name" />
+      </label>
+      <label>
+        CONTENT:<input type="text" name="content" placeholder="enter review name" />
+      <input type="submit" value="create new product" />
+  </form>
+</div>
+{% endblock %}
