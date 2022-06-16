@@ -1,7 +1,8 @@
 //////////////////////////////////////////////
 // Import Dependencies
 //////////////////////////////////////////////
-const mongoose = require("./connection")
+const mongoose = require("./connection");
+const Review = require("./review");
 
 /////////////////////////////////////////////////
 // Our Models
@@ -22,10 +23,9 @@ const painterSchema = new Schema(
         required: true,
         },
          
-        reviews: {
-            type: [String],
-            required: true,
-        },
+        reviews: [
+             {type:Schema.Types.ObjectId,ref:"Review"},
+    ],
     })
 
     // Make painter model

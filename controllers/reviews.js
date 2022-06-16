@@ -3,7 +3,7 @@
 ////////////////////////////////////////
 const express = require("express");
 const Review = require("../models/review");
-
+const Painter = require("../models/painter")
 /////////////////////////////////////////
 // Create Route
 /////////////////////////////////////////
@@ -49,12 +49,22 @@ router.get("/new", (req, res) => {
 
   // create route
 router.post("/", (req, res) => {
+  console.log("params", req.body)
+  const id = req.body.id
+  let reviewId
     // add username to req.body to track related user
     req.body.username = req.session.username;
     Review.create(req.body)
       .then((reviews) => {
+        reviewId = reviews._id
+       // console.log("reviews", reviews)
+        Painter.findById(id)
+        .then((painter) => {
+          console.log("please work",painter)
+          painter.reviews.push(reviewId)
+        })
         // redirect user to index page if successfully created item
-        res.render("reviews/show.liquid")
+        res.redirect("/painters")
       })
       // send error as json
       .catch((error) => {
