@@ -62,9 +62,10 @@ router.post("/", (req, res) => {
         .then((painter) => {
           console.log("please work",painter)
           painter.reviews.push(reviewId)
+          painter.save()
         })
         // redirect user to index page if successfully created item
-        res.redirect("/painters")
+        res.redirect(`/painters/${id}`)
       })
       // send error as json
       .catch((error) => {
