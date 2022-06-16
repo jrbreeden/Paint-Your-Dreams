@@ -105,7 +105,7 @@ router.put("/:id", (req, res) => {
     const id = req.params.id;
 
     // find the particular review from the database
-    Painter.findById(id).populate("reviews").exec
+    Painter.findById(id).populate("reviews").exec()
     .then((painter) => {
         console.log(painter);
         // render the template with the data from the database

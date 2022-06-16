@@ -3,7 +3,8 @@
 ////////////////////////////////////////
 const express = require("express");
 const Review = require("../models/review");
-const Painter = require("../models/painter")
+const Painter = require("../models/painter");
+const { reset } = require("nodemon");
 /////////////////////////////////////////
 // Create Route
 /////////////////////////////////////////
@@ -95,11 +96,12 @@ router.get("/:id/edit", (req, res) => {
 router.put("/:id", (req, res) => {
     // get the id from params
     const id = req.params.id;
+    Painter.findById()
     Review.findByIdAndUpdate(id, req.body,{ new: true })
     // update the review
       .then((review) => {
         // redirect to main page after updating
-        res.redirect("/reviews")
+        res.redirect("/painters")
       })
       // send error as json
       .catch((error) => {
@@ -109,21 +111,34 @@ router.put("/:id", (req, res) => {
   })
 
   // Delete route
-  router.delete("/:id", (req, res) => {
-    // get the id from params
-    const id = req.params.id;
-    // delete the review
-    Review.findByIdAndRemove(id)
-      .then((review) => {
-        // redirect to main page after deleting
-        res.redirect("/reviews");
+  router.delete('/delete/:painterId/:reviewsId', (req, res) => {
+    // parse out ids
+    const painterId = req.params.painterId
+    console.log("this is the painter ID:/n", painterId)
+    const reviewsId = req.params.reviewsId
+    console.log("ReviewsID:/n", reviewsId)
+    MyPainters.findById(painterId)
+      .then(painter => {
+        console.log("this is the painter reviews", painter.reviews)
+        const theReviews = Painter.reviews.id(reviewsId)
+        console.log("this is the review:/n", theReviews)
+        if ( theReviews.author == req.session.userId) {
+          console.log(theReviews.author)
+          theReviews.remove()
+          return painter.save()
+        } else {
+          return
+        }
       })
-      // send error as json
-      .catch((error) => {
-        console.log(error);
-        res.json({ error });
-      });
-  });
+      .then(painter => {
+        res.redirect(`/painters/my_painters/${painter.id}`)
+      })
+      .catch(error => {
+        console.log(error)
+        res.send(error)
+      })
+    })
+       
   
   // show route
   router.get("/:id", (req, res) => {
