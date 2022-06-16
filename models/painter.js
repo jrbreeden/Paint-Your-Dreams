@@ -1,14 +1,14 @@
 //////////////////////////////////////////////
 // Import Dependencies
 //////////////////////////////////////////////
-const mongoose = require("./connection");
-const Review = require("./review");
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
 /////////////////////////////////////////////////
 // Our Models
 ////////////////////////////////////////////////
 // pull schema and model from mongoose
-const { Schema, model } = mongoose;
+
 
 // make painter schema
 const painterSchema = new Schema(
@@ -23,11 +23,15 @@ const painterSchema = new Schema(
         required: true,
         },
          
-        reviews: [
-             {type:Schema.Types.ObjectId,ref:"Review"},
-    ],
-    })
+        reviews: {
+            type:[Schema.Types.ObjectId],
+            ref:'Review'
 
+        }
+    },
+    {timestamps:true}
+    )
+    
     // Make painter model
 const Painter = model("Painter", painterSchema)
 

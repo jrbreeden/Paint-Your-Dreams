@@ -4,7 +4,7 @@
 const express = require("express");
 const Review = require("../models/review");
 const Painter = require("../models/painter");
-const { reset } = require("nodemon");
+
 /////////////////////////////////////////
 // Create Route
 /////////////////////////////////////////

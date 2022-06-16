@@ -31,12 +31,25 @@ app.use(express.static("public")); // serve files from public statically
 app.use(
   session({
     secret: process.env.SECRET,
-    store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     saveUninitialized: true,
     resave: false,
   })
 )
+// Fire off the connection to Mongo DB
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
+
+mongoose.connection.on('connected', () => {
+  console.log(`Mongoose connected to ${mongoose.connection.host}:${mongoose.connection.port}`);
+});
+
+mongoose.connection.on("error", (err) => {
+  console.log("Could not connect to MongoDB!", err);
+});
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////

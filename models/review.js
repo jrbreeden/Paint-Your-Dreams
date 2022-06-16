@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
-const mongoose = require("./connection")
+const mongoose = require("mongoose")
 
 
 
@@ -13,17 +13,17 @@ const mongoose = require("./connection")
 const { Schema, model } = mongoose;
 
 // make review schema
-const reviewsSchema = new Schema({
-    content: String,
-    rating: {type: Number, min: 1, max: 5, default: 5}
-  }, {
-    timestamps: true,
-    username: String,
-  });
-  
+const reviewSchema = new Schema({
+  username: String,
+  content: String,
+  rating: { type: Number, min: 1, max: 5, default: 5 }
+}, {
+  timestamps: true
+});
+
 // make review model
-const Review = model("Review", reviewsSchema);
-  
+const Review = model("Review", reviewSchema);
+
 ///////////////////////////////////////////////////
 // Export Model
 ///////////////////////////////////////////////////
