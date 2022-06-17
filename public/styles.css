@@ -6,6 +6,5 @@ body {
     padding-top: 1em;
     text-align: center;
     background-color: blueviolet;
-    background-size: cover;
-    background-repeat: space;
+    color: black;
 }
