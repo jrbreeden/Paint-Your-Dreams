@@ -4,8 +4,8 @@ The windows game paint used to be one of my favorite computer games as a child a
 
 The User Story:
  * The user will log in
-* The user will view paintings
- * The user will leave reviews for the painter
+* The user will be able to view painters
+ * The user will be able to leave reviews for the painters
 
 ## Wireframes:
  <img width="1616" src="img/Paint Your Heart Out.png" >
@@ -38,18 +38,20 @@ Technologies Used:
 How To Use:
    * Log in
    * Enter your information
-   * Click view paintings
-   * View the paintings
-   * Go back to the home screen
-   * Leave reviews for the painter
-
+   * Add painters
+   * Create reviews for painters
+   * Edit painters
+   * Delete painters
+   
 MVP Requirements:
 * A user will be able to log in
 * The user will be able to enter their name, a bio, and their email address
-* The user will be able to view some paintings
-* The user will be able to leave reviews for the painter of the paintings
+* The user will be able to add their favorite painters
+* The user will be able to leave reviews for the painters
 
 Stretch goals / ICE BOX:
    * Font Design
    * Sound
+   * Paintings
+   * Be able to edit and delete reviews
    
