@@ -8,7 +8,7 @@ The User Story:
  * The user will be able to leave reviews for the painters
 
 ## Wireframes:
- <img width="1616" src="img/Paint Your Heart Out.png" >
+ <img width="1616" src="img/Screen Shot 2022-06-17 at 11.11.11 AM.png" >
 
 ## The ERD: 
 <img width ="1616" src="img/Paint Your Heart Out ERD.png">
