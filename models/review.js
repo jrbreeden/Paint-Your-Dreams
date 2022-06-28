@@ -15,6 +15,7 @@ const { Schema, model } = mongoose;
 // make review schema
 const reviewSchema = new Schema({
   username: String,
+  name: String,
   content: String,
   rating: { type: Number, min: 1, max: 5, default: 5 }
 }, {
