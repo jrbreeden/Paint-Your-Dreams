@@ -18,7 +18,7 @@ const PainterRouter = require("./controllers/painters");
 /////////////////////////////////////////////////
 // Create our Express Application Object Bind Liquid Templating Engine
 /////////////////////////////////////////////////
-const app = require("liquid-express-views")(express(), {root: [path.resolve(__dirname, 'views/')]})
+const app = require("liquid-express-views")(express(),
 
 /////////////////////////////////////////////////////
 // Middleware

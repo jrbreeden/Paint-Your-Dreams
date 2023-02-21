@@ -102,7 +102,7 @@ router.get("/:id/edit", (req, res) => {
 router.put("/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
-  Painter.findById()
+  // Painter.findById()
   Review.findByIdAndUpdate(id, req.body, { new: true })
     // update the review
     .then((review) => {

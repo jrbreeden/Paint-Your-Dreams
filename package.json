@@ -29,7 +29,9 @@
     "liquid-express-views": "^1.0.8",
     "method-override": "^3.0.0",
     "mongoose": "^6.3.6",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node": "^19.6.0",
+    "server.js": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
