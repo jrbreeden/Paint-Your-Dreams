@@ -47,7 +47,7 @@ router.post("/", (req, res) => {
     Painter.create(req.body)
       .then((painters) => {
         // redirect user to index page if successfully created item
-        res.render("painters/show.liquid")
+        res.render("painters")
       })
       // send error as json
       .catch((error) => {
