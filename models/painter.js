@@ -2,13 +2,13 @@
 // Import Dependencies
 //////////////////////////////////////////////
 const mongoose = require("./connection")
-const { Schema, model } = mongoose;
+
 
 /////////////////////////////////////////////////
 // Our Models
 ////////////////////////////////////////////////
 // pull schema and model from mongoose
-
+const { Schema, model } = mongoose
 
 // make painter schema
 const painterSchema = new Schema(
