@@ -1,16 +1,20 @@
-{% layout "layout.liquid" %} 
+{% layout "layout.liquid" %}
 {% block content %}
-<div>
-    <a href="/painters/new"><button>Create A New Painter</button></a>
-    <a href="users/logout"><button>Logout</button></a>
-{% for painter in painters %}
-    <article>
-      <a href="/painters/{{ painter._id }}">
-        <h2>
-          {{ painter.name }} 
-        </h2>
-      </a>
-    </article>
+  <div>
+    <a href="/painters/new">
+      <button>Create A New Painter</button>
+    </a>
+    <a href="users/logout">
+      <button>Logout</button>
+    </a>
+    {% for painter in painters %}
+      <article>
+        <a href="/painters/{{ painter._id }}">
+          <h2>
+            {{ painter.name }}
+          </h2>
+        </a>
+      </article>
     {% endfor %}
   </div>
-  {% endblock %}
+{% endblock %}

@@ -3,7 +3,7 @@ Premise:
 The windows game paint used to be one of my favorite computer games as a child and I like going to art museums. I want to use my love for art to create a fun app for people of all ages.
 
  # Gamelink
- https://paintdreams.herokuapp.com/
+
 
 The User Story:
  * The user will log in
@@ -37,7 +37,7 @@ Technologies Used:
 * Express
 * Liquid
 * MongoDB
-* Heroku
+
 
 How To Use:
    * Log in

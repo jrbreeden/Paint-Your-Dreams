@@ -1,55 +1,44 @@
+  //////////////////////////////////////////////
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
 require("dotenv").config(); // Load ENV Variables
 const express = require("express"); // import express
 const morgan = require("morgan"); //import morgan
-const methodOverride = require("method-override");
-const mongoose = require("mongoose");
+const methodOverride = require("method-override")
+const mongoose = require("mongoose")
 const path = require("path")
 const ReviewRouter = require("./controllers/reviews")
 const UserRouter = require("./controllers/users")
+const PainterRouter = require("./controllers/painters");
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
-const PainterRouter = require("./controllers/painters");
-
 
 
 /////////////////////////////////////////////////
-// Create our Express Application Object Bind Liquid Templating Engine
+// Create our Express Application Object
 /////////////////////////////////////////////////
-const app = require("liquid-express-views")(express(),
+const app = require("liquid-express-views")(express(), {root: [path.resolve(__dirname, 'views/')]})
+
+
 
 /////////////////////////////////////////////////////
 // Middleware
 /////////////////////////////////////////////////////
-app.use(morgan("tiny")); // logging
-app.use(methodOverride("_method")); //override for put and delete request from forms
-app.use(express.urlencoded({ extended: true})); // parse urlencoded request bodies
+app.use(morgan("tiny")); //logging
+app.use(methodOverride("_method")); // override for put and delete requests from forms
+app.use(express.urlencoded({ extended: true })); // parse urlencoded request bodies
 app.use(express.static("public")); // serve files from public statically
 // middleware to setup session
 app.use(
   session({
     secret: process.env.SECRET,
-    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+    store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
     saveUninitialized: true,
     resave: false,
   })
-)
-// Fire off the connection to Mongo DB
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+);
 
-
-mongoose.connection.on('connected', () => {
-  console.log(`Mongoose connected to ${mongoose.connection.host}:${mongoose.connection.port}`);
-});
-
-mongoose.connection.on("error", (err) => {
-  console.log("Could not connect to MongoDB!", err);
-});
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
@@ -60,6 +49,8 @@ app.use("/painters", PainterRouter)
 app.get("/", (req, res) => {
   res.render("index.liquid");
 });
+
+
 
   
   ///////////////////////////////////////////////

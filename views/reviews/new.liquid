@@ -1,20 +1,32 @@
 {% layout "layout.liquid" %}
 {% block content %}
-<div>
-  <form action="/reviews" method="post">
-    <fieldset>
-      <legend>Create a New Review</legend>
-      <label>
-        NAME:<input type="text" name="name" placeholder="enter review name" />
-      </label>
-      <label>
-        CONTENT:<input type="text" name="content" placeholder="enter review name" />
-      </label>
-      <label>
-        RATING:<input type="number" name="rating" placeholder="rating" min="1" max="5"  default="5"  />
-      </label>
-    </fieldset>
-    <input type="submit" value="create new review" />
-  </form>
-</div>
+  <div>
+    <form action="/reviews" method="post">
+      <fieldset>
+        <legend>Create a New Review</legend>
+        <label>
+          NAME:<input
+            type="text"
+            name="name"
+            placeholder="enter review name" />
+        </label>
+        <label>
+          CONTENT:<input
+            type="text"
+            name="content"
+            placeholder="enter review name" />
+        </label>
+        <label>
+          RATING:<input
+            type="number"
+            name="rating"
+            placeholder="rating"
+            min="1"
+            max="5"
+            default="5" />
+        </label>
+      </fieldset>
+      <input type="submit" value="create new review" />
+    </form>
+  </div>
 {% endblock %}

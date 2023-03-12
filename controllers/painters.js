@@ -4,7 +4,19 @@ const Painter = require ("../models/painter")
 /////////////////////////////////////////
 // Create Route
 /////////////////////////////////////////
-const router = express.Router();
+const router = express.Router()
+
+////////////////////////////////////////
+// Router Middleware
+////////////////////////////////////////
+// Authorization Middleware
+router.use((req, res, next) => {
+  if (req.session.loggedIn) {
+    next();
+  } else {
+    res.redirect("/users/login");
+  }
+});
 
 
 /////////////////////////////////////////
@@ -27,12 +39,8 @@ router.get("/", (req, res) => {
       });
   });
 
-  // new route
-router.get("/new", (req, res) => {
-    res.render("painters/new.liquid");
-  });
-
-  // create route
+  
+// create route
 router.post("/", (req, res) => {
     // add username to req.body to track related user
     req.body.username = req.session.username;
@@ -47,6 +55,64 @@ router.post("/", (req, res) => {
         res.json({ error });
       });
   });
+
+  // New route
+router.get("/new", (req, res) => {
+  res.render("painters/new.liquid")
+})
+
+// show route
+router.get("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+
+  // find the particular review from the database
+  Painter.findById(id).populate("reviews").exec()
+  .then((painter) => {
+      console.log(painter);
+      // render the template with the data from the database
+      res.render("painters/show.liquid", { painter});
+  })
+  .catch((error) => {
+      console.log(error);
+      res.json({ error });
+  });
+});
+
+// Update route
+router.put("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  Painter.findByIdAndUpdate(id, req.body,{ new: true })
+  // update the painter
+    .then((painter) => {
+      // redirect to main page after updating
+      res.redirect("/painters")
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error)
+      res.json({ error })
+    })
+})
+
+
+// Delete route
+router.delete("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // delete the review
+  Painter.findByIdAndRemove(id)
+    .then((painter) => {
+      // redirect to main page after deleting
+      res.redirect("/painters");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
 
   // edit route
 router.get("/:id/edit", (req, res) => {
@@ -65,58 +131,6 @@ router.get("/:id/edit", (req, res) => {
       });
   });
 
-  // Update route
-router.put("/:id", (req, res) => {
-    // get the id from params
-    const id = req.params.id;
-    Painter.findByIdAndUpdate(id, req.body,{ new: true })
-    // update the painter
-      .then((painter) => {
-        // redirect to main page after updating
-        res.redirect("/painters")
-      })
-      // send error as json
-      .catch((error) => {
-        console.log(error)
-        res.json({ error })
-      })
-  })
-
-  // Delete route
-  router.delete("/:id", (req, res) => {
-    // get the id from params
-    const id = req.params.id;
-    // delete the review
-    Painter.findByIdAndRemove(id)
-      .then((painter) => {
-        // redirect to main page after deleting
-        res.redirect("/painters");
-      })
-      // send error as json
-      .catch((error) => {
-        console.log(error);
-        res.json({ error });
-      });
-  });
-  
-  // show route
-  router.get("/:id", (req, res) => {
-    // get the id from params
-    const id = req.params.id;
-
-    // find the particular review from the database
-    Painter.findById(id).populate("reviews").exec()
-    .then((painter) => {
-        console.log(painter);
-        // render the template with the data from the database
-        res.render("painters/show.liquid", { painter});
-    })
-    .catch((error) => {
-        console.log(error);
-        res.json({ error });
-    });
-  });
-  
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
